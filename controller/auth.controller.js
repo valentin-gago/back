@@ -6,43 +6,45 @@ const SALT = 10;
 const RegistroController = (req, res, next) => {
   const { email, password, username } = req.body;
   UserModel.findOne({ email })
-   .then((user) => {
+    .then((user) => {
       if (user) {
-       throw new Error("Email ya en uso");
-    }
-    const saltBcrypt = bcrypt.genSaltSync(SALT);
-    const hashBcrypt = bcrypt.hashSync(password, saltBcrypt);
+        throw new Error("Email ya en uso");
+      }
+      const saltBcrypt = bcrypt.genSaltSync(SALT);
+      const hashBcrypt = bcrypt.hashSync(password, saltBcrypt);
 
-    return UserModel.create({ email, password: hashBcrypt, username });
-  })
-  .then(() => {
-    res.sendStatus(201);
-  })
-  .catch((err) => {
-    if (err.message === "Email ya en uso") {
-      res.status(400).json({ errorMessage: err.message });
-      return;
-    }
-    next(err);
-  });
-
+      return UserModel.create({ email, password: hashBcrypt, username });
+    })
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      if (err.message === "Email ya en uso") {
+        res.status(400).json({ errorMessage: err.message });
+        return;
+      }
+      next(err);
+    });
 };
 
 const LoginController = (req, res, next) => {
-    const { email, password } = req.body;
+  const { email, password } = req.body;
 
-    UserModel.findOne({ email })
-        .then((user) => {
-            if (user && bcrypt.compareSync(password, user.password)) {
-                res.status(200).json({ token: signJwt(user._id.toString(), user.email) });
-            } else {
-                res.status(400).json({ errorMessage: "Email o contraseña no valida." });
-            }
-        })
-        .catch(next);
+  UserModel.findOne({ email })
+    .then((user) => {
+      if (user && bcrypt.compareSync(password, user.password)) {
+        res.status(200).json({ token: signJwt(user._id.toString(), user.email) });
+    } else {
+      res.status(400).json({ errorMessage: "Email o contraseña no valida." });
+    }
+  })
+  .catch(next);
 };
+       
+        
+          
 
 module.exports = {
-    RegistroController,
-    LoginController,
+  RegistroController,
+  LoginController,
 };

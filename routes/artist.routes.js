@@ -8,18 +8,18 @@ const {
     create,
     updateOne,
     deleteOne,
-} = require("../controller/artista.controller");
+} = require("../controller/artist.controller");
 
 
 router.get("/", getAll);
 router.get("/:id", validateToken, getOne);
 
 
-router.post("/", create);
+router.post("/create", create);
 
 
 router.put("/:id", updateOne);
 
-router.delete("/:id", deleteOne);
+router.delete("/:id/delete", deleteOne);
 
 module.exports = router;

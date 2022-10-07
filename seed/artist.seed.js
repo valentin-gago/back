@@ -7,32 +7,32 @@ const artistModel = require("../models/artista.model");
 
 const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/back";
 
-const artist = [
-  {
-    name: "test1",
-    song: "test1",
-    age: 23,
-    start_year: 1995,
-  },
-  {
-    name: "test2",
-    song: "test2",
-    age: 56,
-    start_year: 1946,
-  },
-  {
-    name: "test3",
-    song: "test3",
-    age: 29,
-    start_year: 1965,
-  },
-  {
-    name: "test4",
-    song: "test4",
-    age: 43,
-    start_year: 1975,
-  },
-];
+// const artist = [
+//   {
+//     name: "test1",
+//     song: "test1",
+//     age: 23,
+//     start_year: 1995,
+//   },
+//   {
+//     name: "test2",
+//     song: "test2",
+//     age: 56,
+//     start_year: 1946,
+//   },
+//   {
+//     name: "test3",
+//     song: "test3",
+//     age: 29,
+//     start_year: 1965,
+//   },
+//   {
+//     name: "test4",
+//     song: "test4",
+//     age: 43,
+//     start_year: 1975,
+//   },
+// ];
 
 mongoose
   .connect(MONGO_URI)

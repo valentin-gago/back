@@ -2,16 +2,17 @@
 const { Schema, model } = require("mongoose");
 
 const artistSchema = new Schema(
-    {
-        name: { type: String },
-        song: { type: String },
-        age: { type: Number },
-        start_year: { type: Number }
-    },
+  {
+    name: { type: String },
+    song: { type: String },
+    age: { type: Number },
+    start_year: { type: Number },
+  },
 
-    {
-        timestamps: true,
-    }
+  {
+    timestamps: true,
+    versionKey: false,
+  }
 );
 
 const artistModel = model("artist", artistSchema);

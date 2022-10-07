@@ -46,7 +46,7 @@ const create = (req, res, next) => {
     .then(() => {
       res.sendStatus(200);
     })
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err));
 };
 
 const updateOne = (req, res, next) => {
@@ -55,12 +55,7 @@ const updateOne = (req, res, next) => {
     if (!isValidObjectId(id)) {
       throw new Error("Error: Invalid mongo ID");
     }
-    const {
-      name,
-      song,
-      age,
-      start_year,
-    } = req.body;
+    const { name, song, age, start_year } = req.body;
     artistModel
       .findByIdAndUpdate(id, {
         name,
@@ -102,6 +97,7 @@ const deleteOne = (req, res, next) => {
 module.exports = {
   TestController,
   getAll,
+  getOne,
   create,
   updateOne,
   deleteOne,
